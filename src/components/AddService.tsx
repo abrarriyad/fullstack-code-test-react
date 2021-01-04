@@ -1,28 +1,35 @@
 import React, { useState, useContext } from "react";
 import { ServiceContext } from "../context/ServiceContext";
+import { Service } from "../context/ServiceContext";
 
-const AddService = () => {
-  const handleServiceName = (event) => {
+const AddService: React.FC = () => {
+  const handleServiceName = (event: { target: HTMLInputElement }) => {
     const val = event.target.value;
     setService({
       name: val,
       url: service.url,
+      status: "",
+      id: "",
     });
   };
-  const handleServiceUrl = (event) => {
+  const handleServiceUrl = (event: { target: HTMLInputElement }) => {
     const val = event.target.value;
     setService({
       name: service.name,
       url: val,
+      status: "",
+      id: "",
     });
   };
 
   const { addService, toggleAddServicePrompt, addServiceAlert } = useContext(
     ServiceContext
   );
-  const [service, setService] = useState({
+  const [service, setService] = useState<Service>({
     name: "",
     url: "",
+    id: "",
+    status: "",
   });
   if (addServiceAlert) {
     return (

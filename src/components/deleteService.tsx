@@ -1,31 +1,12 @@
 import React, { useState, useContext } from "react";
 import { ServiceContext } from "../context/ServiceContext";
-
-const DeleteService = () => {
-  const handleServiceName = (event) => {
-    const val = event.target.value;
-    setService({
-      name: val,
-      url: service.url,
-    });
-  };
-  const handleServiceUrl = (event) => {
-    const val = event.target.value;
-    setService({
-      name: service.name,
-      url: val,
-    });
-  };
-
+const DeleteService: React.FC = () => {
   const {
     removeService,
     toggleDeleteServicePrompt,
     deleteServiceAlert,
   } = useContext(ServiceContext);
-  const [service, setService] = useState({
-    name: "",
-    url: "",
-  });
+
   if (deleteServiceAlert) {
     return (
       <div className="notification is-danger is-light">

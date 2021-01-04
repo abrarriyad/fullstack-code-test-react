@@ -1,7 +1,7 @@
 import React, { useContext, useEffect } from "react";
 import { ServiceContext } from "../context/ServiceContext";
-import Alert from "../components/Alert";
-const ServiceTable = () => {
+import Alert from "./Alert";
+const ServiceTable: React.FC = () => {
   const {
     serviceList,
     toggleAddServicePrompt,
@@ -50,7 +50,6 @@ const ServiceTable = () => {
           <button
             onClick={() => {
               toggleAddServicePrompt(true);
-              console.log(addServiceAlert);
             }}
             className="button is-primary is-outlined"
           >

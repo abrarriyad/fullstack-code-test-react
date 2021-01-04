@@ -1,11 +1,11 @@
 import axios from "axios";
 import React, { useState } from "react";
 import { useHistory } from "react-router-dom";
-// import axios from "axios";
-const Register = () => {
-  const [isSuccess, setIsSuccess] = useState(true);
-  const [token, setToken] = useState(null);
-  const [user, setUser] = useState({
+import { User } from "../context/ServiceContext";
+
+const Register: React.FC = () => {
+  const [isSuccess, setIsSuccess] = useState<boolean>(true);
+  const [user, setUser] = useState<User>({
     username: "",
     password: "",
   });
@@ -13,17 +13,10 @@ const Register = () => {
   const history = useHistory();
 
   const register = () => {
-    console.log(user.username);
-    console.log(user.password);
-    console.log(user);
-
     axios
       .post("/register", user)
       .then((response) => {
         setIsSuccess(true);
-        setToken(response.data);
-        // localStorage.setItem("token", token);
-        console.log(response.data);
         history.push("/login");
       })
       .catch((error) => {
@@ -32,7 +25,7 @@ const Register = () => {
       });
   };
 
-  const handleUsername = (event) => {
+  const handleUsername = (event: { target: HTMLInputElement }) => {
     const val = event.target.value;
     setUser({
       username: val,
@@ -40,13 +33,12 @@ const Register = () => {
     });
   };
 
-  const handlePassword = (event) => {
+  const handlePassword = (event: { target: HTMLInputElement }) => {
     const val = event.target.value;
     setUser({
       username: user.username,
       password: val,
     });
-    // setpassword(event.target.value);
   };
 
   return (

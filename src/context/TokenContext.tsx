@@ -2,18 +2,18 @@ import React, { useState, createContext } from "react";
 
 export const TokenContext = createContext({
   token: "",
-  setToken: (token) => {},
+  setToken: (token: string) => {},
   isLoggedIn: false,
 });
 
-export const TokenProvider = (props) => {
-  const [token, setToken] = useState(localStorage.getItem("token"));
-  const [loginStatus, setLoginStatus] = useState(true);
-  const changeToken = (token) => {
+export const TokenProvider: React.FC = (props) => {
+  const [token, setToken] = useState<any>(localStorage.getItem("token"));
+  const [loginStatus, setLoginStatus] = useState<boolean>(true);
+  const changeToken = (token: string) => {
     setToken(token);
   };
 
-  const changeLoginStatus = (status) => {
+  const changeLoginStatus = (status: boolean) => {
     setLoginStatus(status);
     // return loginStatus;
   };
@@ -23,7 +23,6 @@ export const TokenProvider = (props) => {
       value={{
         token: token,
         setToken: changeToken,
-        changeLoginStatus: changeLoginStatus,
         isLoggedIn: loginStatus,
       }}
     >

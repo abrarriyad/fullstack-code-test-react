@@ -1,10 +1,10 @@
 import React, { useEffect, useState } from "react";
-import ServiceTable from "../components/ServiceTable";
+import ServiceTable from "./ServiceTable";
 import AddService from "./AddService";
 import { ServiceProvider } from "../context/ServiceContext";
 import DeleteService from "./deleteService";
 
-const Services = () => {
+const ServicePanel: React.FC = () => {
   return (
     <div className="container">
       <ServiceProvider>
@@ -16,4 +16,4 @@ const Services = () => {
   );
 };
 
-export default Services;
+export default ServicePanel;

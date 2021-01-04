@@ -2,39 +2,54 @@ import React, { useState, createContext, useContext } from "react";
 import { TokenContext } from "./TokenContext";
 import axios from "axios";
 
+export interface Service {
+  id: string;
+  name: string;
+  url: string;
+  status: string;
+}
+
+export interface User {
+  username: string;
+  password: string;
+}
+
+interface Alert {
+  show: boolean;
+  message: string;
+  type: string;
+}
 export const ServiceContext = createContext({
-  serviceList: [],
-  toggleAddServicePrompt: (value) => {},
-  toggleDeleteServicePrompt: (value) => {},
-  addService: (service) => {},
+  serviceList: Array<Service>(),
+  toggleAddServicePrompt: (value: boolean) => {},
+  toggleDeleteServicePrompt: (value: boolean) => {},
+  addService: (service: Service) => {},
   removeService: () => {},
   getServices: () => {},
   addServiceAlert: false,
   deleteServiceAlert: false,
-  showAlert: {},
+  showAlert: {} as Alert,
 });
 
-export const ServiceProvider = (props) => {
-  const { token, setToken, isLoggedIn, changeLoginStatus } = useContext(
-    TokenContext
-  );
+export const ServiceProvider: React.FC = (props) => {
+  const { token, setToken, isLoggedIn } = useContext(TokenContext);
 
-  const [serviceList, setServiceList] = useState([]);
-  const [addServiceAlert, setAddServiceAlert] = useState(false);
-  const [deleteServiceAlert, setDeleteServiceAlert] = useState(false);
-  const [showAlert, setShowAlert] = useState({
+  const [serviceList, setServiceList] = useState<Array<Service>>([]);
+  const [addServiceAlert, setAddServiceAlert] = useState<boolean>(false);
+  const [deleteServiceAlert, setDeleteServiceAlert] = useState<boolean>(false);
+  const [showAlert, setShowAlert] = useState<Alert>({
     show: false,
     message: "",
     type: "",
   });
 
-  const updateShowAlert = (alert) => {
+  const updateShowAlert = (alert: Alert) => {
     setShowAlert(alert);
   };
-  const toggleAddServicePrompt = (val) => {
+  const toggleAddServicePrompt = (val: boolean) => {
     setAddServiceAlert(val);
   };
-  const toggleDeleteServicePrompt = (val) => {
+  const toggleDeleteServicePrompt = (val: boolean) => {
     setDeleteServiceAlert(val);
   };
 
@@ -42,12 +57,13 @@ export const ServiceProvider = (props) => {
     setTimeout(() => {
       setShowAlert({
         show: false,
+        message: "",
+        type: "",
       });
     }, 3000);
   };
 
-  const addService = (service) => {
-    console.log("addService called");
+  const addService = (service: Service) => {
     axios
       .post("/services", service, {
         headers: {
@@ -55,7 +71,6 @@ export const ServiceProvider = (props) => {
         },
       })
       .then((response) => {
-        console.log(...serviceList);
         setServiceList([...serviceList, response.data]);
         setShowAlert({
           show: true,

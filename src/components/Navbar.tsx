@@ -2,18 +2,9 @@ import React, { Component, useContext } from "react";
 import { Link } from "react-router-dom";
 import { TokenContext } from "../context/TokenContext";
 
-const Navbar = () => {
-  const { isLoggedIn, token, changeLoginStatus } = useContext(TokenContext);
+const Navbar: React.FC = () => {
+  const { token } = useContext(TokenContext);
 
-  // if (token.valueOf() !== "null") {
-  //   console.log("token is not null");
-  //   changeLoginStatus(true);
-  // } else {
-  //   changeLoginStatus(false);
-  // }
-  console.log(isLoggedIn);
-  console.log(typeof token);
-  console.log(token);
   return (
     <div className="container">
       <nav
