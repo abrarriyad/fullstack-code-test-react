@@ -1,10 +1,19 @@
-import React, { Component } from "react";
-import Home from "./Home";
-import Register from "./Register";
-import Login from "./Login";
+import React, { Component, useContext } from "react";
 import { Link } from "react-router-dom";
+import { TokenContext } from "../context/TokenContext";
 
 const Navbar = () => {
+  const { isLoggedIn, token, changeLoginStatus } = useContext(TokenContext);
+
+  // if (token.valueOf() !== "null") {
+  //   console.log("token is not null");
+  //   changeLoginStatus(true);
+  // } else {
+  //   changeLoginStatus(false);
+  // }
+  console.log(isLoggedIn);
+  console.log(typeof token);
+  console.log(token);
   return (
     <div className="container">
       <nav
@@ -21,47 +30,42 @@ const Navbar = () => {
 
               <h4 className="ml-1">Home</h4>
             </Link>
-            <Link
-              //   v-if="this.$store.getters.isLoggedIn"
-              className="navbar-item has-icon-left"
-              to="/services"
-            >
-              Services
-            </Link>
+            {token.length > 0 && (
+              <Link
+                //   v-if="this.$store.getters.isLoggedIn"
+                className="navbar-item has-icon-left"
+                to="/services"
+              >
+                Services
+              </Link>
+            )}
           </div>
-
           <div className="navbar-end">
             <div className="navbar-item">
               <div className="buttons">
-                <Link
-                  v-if="!this.$store.getters.isLoggedIn"
-                  className="button is-primary"
-                  to="/register"
-                >
-                  <strong>Register</strong>
-                </Link>
-                <Link
-                  v-if="!this.$store.getters.isLoggedIn"
-                  className="button is-primary"
-                  to="/login"
-                >
-                  <span className="icon is-small is-left">
-                    <i className="fas fa-sign-in-alt"></i>
-                  </span>
+                {token.length == 0 && (
+                  <div>
+                    <Link className="button is-primary" to="/register">
+                      <strong>Register</strong>
+                    </Link>
+                    <Link className="button is-primary" to="/login">
+                      <span className="icon is-small is-left">
+                        <i className="fas fa-sign-in-alt"></i>
+                      </span>
 
-                  <h4>Login</h4>
-                </Link>
-                <Link
-                  v-if="this.$store.getters.isLoggedIn"
-                  className="button is-primary"
-                  to="/logout"
-                >
-                  <span className="icon is-small is-left">
-                    <i className="fas fa-sign-out-alt"></i>
-                  </span>
+                      <h4>Login</h4>
+                    </Link>
+                  </div>
+                )}
+                {token.length > 0 && (
+                  <Link className="button is-primary" to="/logout">
+                    <span className="icon is-small is-left">
+                      <i className="fas fa-sign-out-alt"></i>
+                    </span>
 
-                  <h4>Logout</h4>
-                </Link>
+                    <h4>Logout</h4>
+                  </Link>
+                )}
               </div>
             </div>
           </div>

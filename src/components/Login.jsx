@@ -1,16 +1,21 @@
 import axios from "axios";
-import React, { useEffect, useState } from "react";
+import { TokenContext } from "../context/TokenContext";
+import React, { useEffect, useState, useContext } from "react";
 import { useHistory } from "react-router-dom";
 
 const Login = () => {
   const [isSuccess, setIsSuccess] = useState(true);
-  const [token, setToken] = useState("");
+  const { token, setToken, isLoggedIn, changeLoginStatus } = useContext(
+    TokenContext
+  );
+
   const [user, setUser] = useState({
     username: "",
     password: "",
   });
 
   const history = useHistory();
+
   const handleUsername = (event) => {
     const val = event.target.value;
     setUser({
@@ -25,7 +30,6 @@ const Login = () => {
       username: user.username,
       password: val,
     });
-    // setpassword(event.target.value);
   };
 
   useEffect(() => {
@@ -38,6 +42,7 @@ const Login = () => {
       .then((response) => {
         setIsSuccess(true);
         setToken(response.data);
+        changeLoginStatus(true);
         history.push("/services");
       })
       .catch((error) => {

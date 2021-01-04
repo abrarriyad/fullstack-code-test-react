@@ -68,6 +68,7 @@ const Services = () => {
       })
       .then((response) => {
         setServiceList([]);
+        setDeleteServiceAlert(false);
         console.log(response);
       })
       .catch((error) => {});
@@ -84,6 +85,7 @@ const Services = () => {
             <a className="button is-primary is-outlined">Search</a>
           </div>
         </div>
+
         <div className="table-container">
           <table className="table is-bordered is-hoverable is-striped">
             <thead>
@@ -183,6 +185,7 @@ const Services = () => {
           )}
         </div>
       </div>
+
       {deleteServiceAlert && (
         <div className="notification is-danger is-light">
           Do you want to delete all
