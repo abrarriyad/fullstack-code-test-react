@@ -32,19 +32,27 @@ const Login = () => {
 
   useEffect(() => {
     localStorage.setItem("token", token);
+    console.info("Token updated and saved to localstorage");
   }, [token]);
 
   const login = () => {
+    console.group("User Login");
+    console.info("Sending Login request to server");
     axios
       .post("/login", user)
       .then((response) => {
+        console.info("Response status: " + response.status);
+        console.info("Login Successfull");
         setIsSuccess(true);
+        console.log("Updating jwt token...");
         setToken(response.data);
+        console.info("Redirecting to service page...");
+        console.groupEnd();
         history.push("/services");
       })
       .catch((error) => {
         setIsSuccess(false);
-        console.log(error);
+        console.error("Login Failed" + error);
       });
   };
 
@@ -93,7 +101,14 @@ const Login = () => {
           )}
           <div className="field is-grouped">
             <div className="control">
-              <button onClick={login} className="button is-success">
+              <button
+                onClick={() => {
+                  console.time("Login Process begins...");
+                  login();
+                  console.timeEnd("Login Process Ends");
+                }}
+                className="button is-success"
+              >
                 Login
               </button>
             </div>

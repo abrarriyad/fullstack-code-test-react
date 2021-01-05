@@ -6,7 +6,6 @@ const ServiceTable: React.FC = () => {
     serviceList,
     toggleAddServicePrompt,
     toggleDeleteServicePrompt,
-    addServiceAlert,
     getServices,
     showAlert,
   } = useContext(ServiceContext);

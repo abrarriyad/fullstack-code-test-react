@@ -1,5 +1,5 @@
 import axios from "axios";
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { useHistory } from "react-router-dom";
 import { User } from "../context/ServiceContext";
 
@@ -12,16 +12,25 @@ const Register: React.FC = () => {
 
   const history = useHistory();
 
+  useEffect(() => {
+    console.info("Registration Page Loaded");
+  }, []);
+
   const register = () => {
+    console.group("User Registration");
+    console.info("Sending API request to server...");
     axios
       .post("/register", user)
       .then((response) => {
+        console.info("Registration  Successfull");
+        console.log("Redirecting to Login Page...");
+        console.groupEnd();
         setIsSuccess(true);
         history.push("/login");
       })
       .catch((error) => {
         setIsSuccess(false);
-        console.log(error);
+        console.error("Registration Failed: " + error);
       });
   };
 
@@ -87,7 +96,9 @@ const Register: React.FC = () => {
             <div className="control">
               <button
                 onClick={() => {
+                  console.time("User Registration Begin....");
                   register();
+                  console.timeEnd("User Registration End.");
                 }}
                 className="button is-success"
               >

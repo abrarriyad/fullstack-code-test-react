@@ -13,11 +13,6 @@ export const TokenProvider: React.FC = (props) => {
     setToken(token);
   };
 
-  const changeLoginStatus = (status: boolean) => {
-    setLoginStatus(status);
-    // return loginStatus;
-  };
-
   return (
     <TokenContext.Provider
       value={{

@@ -1,4 +1,4 @@
-import React, { useState, useContext } from "react";
+import React, { useContext } from "react";
 import { ServiceContext } from "../context/ServiceContext";
 const DeleteService: React.FC = () => {
   const {

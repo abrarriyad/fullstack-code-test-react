@@ -1,4 +1,4 @@
-import React, { Component } from "react";
+import React from "react";
 
 const home: React.FC = () => {
   return (
@@ -8,7 +8,10 @@ const home: React.FC = () => {
         <hr />
         <h2 className="subtitle">
           <strong>Github Repo: </strong>
-          <a href="https://github.com/nazmulislam-dsi/fullstack-code-test">
+          <a
+            href="https://github.com/nazmulislam-dsi/fullstack-code-test"
+            target="blank"
+          >
             fullstack-code-test
           </a>
           <br />

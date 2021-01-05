@@ -1,9 +1,12 @@
-import React, { Component, useContext } from "react";
+import React, { useContext } from "react";
 import { Link } from "react-router-dom";
 import { TokenContext } from "../context/TokenContext";
 
 const Navbar: React.FC = () => {
-  const { token } = useContext(TokenContext);
+  let { token } = useContext(TokenContext);
+  if (token === null || token === "null") {
+    token = "";
+  }
 
   return (
     <div className="container">
