@@ -22,11 +22,7 @@ const Navbar: React.FC = () => {
               <h4 className="ml-1">Home</h4>
             </Link>
             {token.length > 0 && (
-              <Link
-                //   v-if="this.$store.getters.isLoggedIn"
-                className="navbar-item has-icon-left"
-                to="/services"
-              >
+              <Link className="navbar-item has-icon-left" to="/services">
                 Services
               </Link>
             )}

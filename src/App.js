@@ -2,7 +2,6 @@ import Navbar from "./components/Navbar";
 import Login from "./components/Login";
 import Home from "./components/Home";
 import Register from "./components/Register";
-import Services from "./components/Services";
 import ServicePanel from "./components/ServicePanel";
 import Logout from "./components/Logout";
 import React from "react";
