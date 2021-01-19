@@ -140,3 +140,36 @@ npm install --save typescript @types/node @types/react @types/react-dom @types/j
 ```
 
 A json config file named \*tsconfig.json" will be created.
+
+---
+
+## What is TypeScript and why I used it?
+
+> What is TypeScript?
+
+TypeScript is typed JavaScript. On other words, it's superset of JavaScript.All valid JavaScript code is also TypeScript code.TypeScript code is transformed into JavaScript code via the TypeScript compiler or Babel.
+
+> Why I used TypeScript for this project?
+
+- JavaScript has no types, so it’s hard to control all the parameters and variables that we are using.TypeScript is like JavaScript, but with types. TypeScript provides optional static type system.Types can be added to variables, functions, properties, etc. This will help the compiler and show warnings about any potential errors in code, before an app is ever run. It helps make our code easier to read and avoid errors that may become a debugging nightmare.
+
+- TypeScript shows errors in compile time. It makes programmers life easy.
+
+- Type Inference, which gives some of the benefits of types, without actually using them
+
+- Most modern IDEs help while coding.Since TypeScript is a typed language, the IDE provides with some code hinting. It saves a ton of time.
+
+---
+
+### Resources
+
+> Docs
+
+1. [React Official Documentation](https://reactjs.org/)
+2. [TypeScript Documentation](https://www.typescriptlang.org/docs/)
+
+> Video Tutorial
+
+1. [Context API](https://www.youtube.com/watch?v=35lXWvCuM8o)
+2. [React Hooks](https://www.youtube.com/watch?v=9xhKH43llhU&list=PLN3n1USn4xlmyw3ebYuZmGp60mcENitdM)
+3. [React - The Complete Guide (udemy)](https://www.udemy.com/course/react-the-complete-guide-incl-redux/)
